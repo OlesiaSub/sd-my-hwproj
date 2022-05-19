@@ -2,7 +2,7 @@ from sqlalchemy.sql.functions import now
 from sqlalchemy.sql.schema import Column
 from sqlalchemy.sql.sqltypes import Integer, String, DateTime
 
-from app.logic.database import Base
+from app.logic.database_server import Base
 
 
 class Homework(Base):
@@ -20,13 +20,13 @@ class Attempt(Base):
 
     id = Column(Integer, primary_key=True)
     homework_id = Column(Integer)
-    data = Column(DateTime(timezone=True))
     solution = Column(String)
 
 
 class Result(Base):
     __tablename__ = "result"
     id = Column(Integer, primary_key=True)
+    data = Column(DateTime(timezone=True))
     attempt_id = Column(Integer)
     mark = Column(Integer)
     comment = Column(String)

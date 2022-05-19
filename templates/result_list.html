@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block  title %}
+All notes
+{% endblock %}
+
+{% block body %}
+<h2 style="text-align:center;">All results</h2>
+<p>
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>Comment</th>
+        <th>Mark</th>
+    </tr>
+
+    {% for hw in hws %}
+    <tr>
+        <td>{{ hw.date.date() }}</td>
+        <td>{{ hw.comment }}</td>
+        <td>{{ hw.mark }}</td>
+<!--        <td><a href="/notes/{{ note.id }}" class="btn btn-warning">Show more</a></td>-->
+    </tr>
+    {% endfor %}
+</table>
+<!--<a href="/" class="btn btn-warning">Back to main page</a>-->
+{% endblock %}

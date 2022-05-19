@@ -17,3 +17,4 @@ class Attempt(BaseModel):
 class Result(BaseModel):
     comment: str
     mark: int
+    data: datetime.datetime

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block  title %}
+All notes
+{% endblock %}
+
+{% block body %}
+<h2 style="text-align:center;">All homeworks</h2>
+<p>
+<table border="1">
+    <tr>
+        <th>Full name</th>
+        <th>Task text</th>
+        <th>Deadline</th>
+    </tr>
+
+    {% for hw in hws %}
+    <tr>
+        <td>{{ hw.full_name }}</td>
+        <td>{{ hw.task_text }}</td>
+        <td>{{ hw.deadline.date() }}</td>
+<!--        <td><a href="/notes/{{ note.id }}" class="btn btn-warning">Show more</a></td>-->
+    </tr>
+    {% endfor %}
+</table>
+<!--<a href="/" class="btn btn-warning">Back to main page</a>-->
+{% endblock %}
