@@ -24,12 +24,12 @@ class Server:
     databaseServer = DatabaseServer()
 
     @router.get("/student/hw", response_model=List[models.Homework])
-    def get_hw(self, request: Request):
+    def get_student_hw(self, request: Request):
         return templates.TemplateResponse("hw_list.html",
                                           {"request": request, "hws": self.controllerStudent.get_hw_sorted()})
 
-    @router.get("/student/result", response_model=List[models.Result])
-    def get_result(self, request: Request):
+    @router.get("/student/results", response_model=List[models.Result])
+    def get_student_results(self, request: Request):
         return templates.TemplateResponse("result_list.html",
                                           {"request": request, "results": self.controllerStudent.get_results_sorted()})
 
@@ -40,6 +40,11 @@ class Server:
     @router.post("/teacher/new_homework")
     def add_homework(self, homework: models.Homework, db: Session = Depends(databaseServer.get_db)):
         return self.controllerTeacher.create_hw(homework, db)
+
+    @router.get("/teacher/results", response_model=List[models.Result])
+    def get_teacher_results(self, request: Request):
+        return templates.TemplateResponse("result_list.html",
+                                          {"request": request, "results": self.controllerTeacher.get_results_sorted()})
 
 
 server = Server()
