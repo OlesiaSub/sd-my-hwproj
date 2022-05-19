@@ -25,6 +25,7 @@ class Attempt(Base):
 
 class Result(Base):
     __tablename__ = "result"
+
     id = Column(Integer, primary_key=True)
     data = Column(DateTime(timezone=True))
     attempt_id = Column(Integer)
