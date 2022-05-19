@@ -8,6 +8,7 @@ class Homework(BaseModel):
     full_name: str
     task_text: Optional[str] = None
     deadline: datetime.datetime
+    publication_date: datetime.datetime
 
 
 class Attempt(BaseModel):
