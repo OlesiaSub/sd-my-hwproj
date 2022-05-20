@@ -25,6 +25,9 @@ class ControllerTeacher:
         db.commit()
         db.refresh(db_homework)
 
-    # todo
-    def update_checker(self):
-        pass
+    # def update_checker(self, checker: models.Checker):
+    #     db = next(self.databaseServer.get_db())
+    #     db_checker = schemas.Checker(name=checker.name, script=checker.script)
+    #     db.add(db_checker)
+    #     db.commit()
+    #     db.refresh(db_checker)

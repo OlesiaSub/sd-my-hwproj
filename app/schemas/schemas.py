@@ -26,8 +26,16 @@ class Attempt(Base):
 class Result(Base):
     __tablename__ = "result"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
     date = Column(DateTime(timezone=True))
     attempt_id = Column(Integer)
     mark = Column(Integer)
     comment = Column(String)
+
+
+class Checker(Base):
+    __tablename__ = "checker"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    script = Column(String)

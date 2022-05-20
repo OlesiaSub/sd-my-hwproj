@@ -16,6 +16,13 @@ class Attempt(BaseModel):
 
 
 class Result(BaseModel):
+    id: int
     comment: str
     mark: int
     date: datetime.datetime
+    # checker_output: str # todo
+
+
+class Checker(BaseModel):
+    name: str
+    script: str

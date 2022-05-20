@@ -11,6 +11,7 @@ from starlette.requests import Request
 from app.controllers.controller_student import ControllerStudent
 from app.controllers.controller_teacher import ControllerTeacher
 from app.form.attempt import AttemptCreateForm
+from app.form.new_checker import NewCheckerCreateForm
 from app.form.new_hw import NewHwCreateForm
 from app.logic.database_server import DatabaseServer
 from app.models import models
@@ -40,6 +41,11 @@ class Server:
         return templates.TemplateResponse("result_list.html",
                                           {"request": request, "results": self.controllerStudent.get_results_sorted()})
 
+    @router.get("/student/results/{id}/show", response_model=models.Result)
+    def get_student_result_by_id(self, request: Request, id: int):
+        return templates.TemplateResponse("hw_result.html",
+                                          {"request": request, "result": self.controllerStudent.get_result_by_id(id)})
+
     @router.get("/student/hw/{id}/submit")
     def create_attempt(self, request: Request, id: int):
         return templates.TemplateResponse("create_attempt.html", {"request": request})
@@ -64,7 +70,7 @@ class Server:
                                           {"request": request, "results": self.controllerTeacher.get_results_sorted()})
 
     @router.get("/teacher/new_homework")
-    def form_post(self, request: Request):
+    def hw_get(self, request: Request):
         return templates.TemplateResponse('new_hw.html', context={'request': request})
 
     @router.post("/teacher/new_homework")
@@ -79,6 +85,18 @@ class Server:
                              publication_date=date)
         self.controllerTeacher.add_hw(homework=hw)
         return templates.TemplateResponse("new_hw.html", form.__dict__)
+
+    # @router.get("/teacher/new_script")
+    # def checker_get(self, request: Request):
+    #     return templates.TemplateResponse('new_checker.html', context={'request': request})
+    #
+    # @router.post("/teacher/new_script")
+    # async def hw_post(self, request: Request):
+    #     form = NewCheckerCreateForm(request)
+    #     await form.load_data()
+    #     checker = models.Checker(name=form.name, script=form.script)
+    #     self.controllerTeacher.update_checker(checker=checker)
+    #     return templates.TemplateResponse("new_checker.html", form.__dict__)
 
 
 server = Server()
