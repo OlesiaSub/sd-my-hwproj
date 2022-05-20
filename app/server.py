@@ -1,20 +1,19 @@
 from datetime import datetime
 from typing import List
-from fastapi import FastAPI, Depends, Form
+
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from fastapi_utils.cbv import cbv
 from fastapi_utils.inferring_router import InferringRouter
-from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
-from sqlalchemy.orm import Session
-from sqlalchemy.sql.functions import now
 from starlette.requests import Request
 
 from app.controllers.controller_student import ControllerStudent
 from app.controllers.controller_teacher import ControllerTeacher
 from app.form.attempt import AttemptCreateForm
 from app.form.new_hw import NewHwCreateForm
-from app.models import models
 from app.logic.database_server import DatabaseServer
+from app.models import models
 
 router = InferringRouter()
 templates = Jinja2Templates(directory="templates")
