@@ -11,9 +11,9 @@ class ControllerTeacher:
     Base.metadata.create_all(bind=engine)
 
     def get_results_sorted(self):
-        db = self.databaseServer.get_db()
-        results = next(db).query(schemas.Result).order_by(schemas.Result.data).all()
-        return list(map(lambda x: models.Result(comment=x.comment, mark=x.mark, data=x.data), results))
+        db = next(self.databaseServer.get_db())
+        results = db.query(schemas.Result).order_by(schemas.Result.date).all()
+        return list(map(lambda x: models.Result(id=x.id, comment=x.comment, mark=x.mark, date=x.date), results))
 
     def add_hw(self, homework: models.Homework):
         db = next(self.databaseServer.get_db())

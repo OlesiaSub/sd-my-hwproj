@@ -41,7 +41,7 @@ class Server:
         return templates.TemplateResponse("result_list.html",
                                           {"request": request, "results": self.controllerStudent.get_results_sorted()})
 
-    @router.get("/student/results/{id}/show", response_model=models.Result)
+    @router.get("/student/results/{id}", response_model=models.Result)
     def get_student_result_by_id(self, request: Request, id: int):
         return templates.TemplateResponse("hw_result.html",
                                           {"request": request, "result": self.controllerStudent.get_result_by_id(id)})
@@ -61,12 +61,7 @@ class Server:
 
     @router.get("/teacher/results", response_model=List[models.Result])
     def get_teacher_results(self, request: Request):
-        return templates.TemplateResponse("result_list.html",
-                                          {"request": request, "results": self.controllerTeacher.get_results_sorted()})
-
-    @router.get("/teacher/results", response_model=List[models.Result])
-    def get_teacher_results(self, request: Request):
-        return templates.TemplateResponse("result_list.html",
+        return templates.TemplateResponse("teacher_result_list.html",
                                           {"request": request, "results": self.controllerTeacher.get_results_sorted()})
 
     @router.get("/teacher/new_homework")

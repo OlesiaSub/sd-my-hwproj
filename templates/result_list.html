@@ -12,7 +12,6 @@ All notes
         <th>Date</th>
         <th>Comment</th>
         <th>Mark</th>
-        <th>Detailed result</th>
     </tr>
 
     {% for result in results %}
@@ -20,7 +19,6 @@ All notes
         <td>{{ result.date.date() }}</td>
         <td>{{ result.comment }}</td>
         <td>{{ result.mark }}</td>
-        <td><a href="/student/results/{{result.id}}/show" class="btn btn-warning" style="text-align:center;">Detailed result</a></td>
     </tr>
     {% endfor %}
 </table>
