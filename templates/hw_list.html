@@ -19,9 +19,9 @@ All notes
         <td>{{ hw.full_name }}</td>
         <td>{{ hw.task_text }}</td>
         <td>{{ hw.deadline.date() }}</td>
-<!--        <td><a href="/notes/{{ note.id }}" class="btn btn-warning">Show more</a></td>-->
+        <td><a href="/student/hw/{{hw.id}}/submit" class="btn btn-warning">Submit solution</a></td>
     </tr>
     {% endfor %}
 </table>
-<!--<a href="/" class="btn btn-warning">Back to main page</a>-->
+<p style="text-align:center;"><a href="/student" class="btn btn-warning">Back to hub</a></p>
 {% endblock %}

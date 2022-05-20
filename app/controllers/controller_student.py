@@ -15,9 +15,7 @@ class ControllerStudent:
         db = next(self.databaseServer.get_db())
         hws = db.query(schemas.Homework).filter(schemas.Homework.publication_date <= now()) \
             .order_by(schemas.Homework.deadline).all()
-        return list(
-            map(lambda x: models.Homework(full_name=x.full_name, task_text=x.task_text, deadline=x.deadline,
-                                          publication_date=x.publication_date), hws))
+        return hws
 
     def get_results_sorted(self):
         db = next(self.databaseServer.get_db())
