@@ -33,7 +33,7 @@ class Server:
         return templates.TemplateResponse("result_list.html",
                                           {"request": request, "results": self.controllerStudent.get_results_sorted()})
 
-    @router.post("/student/hw/{id}", response_model=List[models.Result])
+    @router.post("/student/hw/{id}", response_model=models.Result)
     def submit_hw(self, attempt: Attempt, id: int):
         return self.controllerStudent.submit_hw(id, attempt)
 

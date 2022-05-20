@@ -21,8 +21,8 @@ class ControllerStudent:
 
     def get_results_sorted(self):
         db = next(self.databaseServer.get_db())
-        results = db.query(schemas.Result).order_by(schemas.Result.data).all()
-        return list(map(lambda x: models.Result(comment=x.comment, mark=x.mark, data=x.data), results))
+        results = db.query(schemas.Result).order_by(schemas.Result.date).all()
+        return list(map(lambda x: models.Result(comment=x.comment, mark=x.mark, date=x.date), results))
 
     def submit_hw(self, hw_id, attempt: Attempt):
         db = next(self.databaseServer.get_db())
@@ -31,8 +31,8 @@ class ControllerStudent:
         db.add(db_attempt)
         db.commit()
         db.refresh(db_attempt)
-        result = schemas.Result(data=now(), attempt_id=db_attempt.id, mark=5, comment="good")
+        result = schemas.Result(date=now(), attempt_id=db_attempt.id, mark=5, comment="good")
         db.add(result)
         db.commit()
         db.refresh(result)
-        return models.Result(comment=result.comment, mark=result.mark, data=result.data)
+        return models.Result(comment=result.comment, mark=result.mark, date=result.date)

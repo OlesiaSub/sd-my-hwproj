@@ -27,7 +27,7 @@ class Result(Base):
     __tablename__ = "result"
 
     id = Column(Integer, primary_key=True)
-    data = Column(DateTime(timezone=True))
+    date = Column(DateTime(timezone=True))
     attempt_id = Column(Integer)
     mark = Column(Integer)
     comment = Column(String)
