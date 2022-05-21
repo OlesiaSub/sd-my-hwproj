@@ -36,7 +36,8 @@ class ControllerStudent:
             'date': now(),
             #'solution': 'https://raw.githubusercontent.com/OlesiaSub/sd-my-hwproj/impl-1/app/server.py',
              'solution': db_attempt.solution,
-            'checker': 'https://raw.githubusercontent.com/OlesiaSub/sd-my-hwproj/impl-1/app/schemas/schemas.py'})
+            #'checker': 'https://raw.githubusercontent.com/OlesiaSub/sd-my-hwproj/impl-1/app/schemas/schemas.py',
+            'checker': db.query(schemas.Checker).order_by(schemas.Checker.id.desc()).first().link})
 
         self.queue.push_message(message)
 
