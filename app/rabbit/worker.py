@@ -1,10 +1,11 @@
 import pika
 import json
 
-from app.logic import database_server
+from sqlalchemy.sql.functions import now
+
+from app.logic.database_server import DatabaseServer
 from app.logic.runner import Runner
 from app.schemas import schemas
-from sqlalchemy.sql.functions import now
 
 RABBITMQ_HOST = 'localhost'
 RABBITMQ_PORT = 5672
@@ -22,7 +23,7 @@ def callback(ch, method, properties, body):
     print(" [x] Received %r" % task)
     res = runner.run_task(task)
 
-    databaseServer = database_server.DatabaseServer()
+    databaseServer = DatabaseServer()
     db = next(databaseServer.get_db())
     result = schemas.Result(date=now(), attempt_id=task.attempt_id, mark=res[0], comment=res[1])
     db.add(result)

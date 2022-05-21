@@ -41,7 +41,7 @@ class ControllerStudent:
 
         self.queue.push_message(message)
 
-        return None
+        return schemas.Result(date=now(), attempt_id=100, mark=4, comment="god")
 
     def get_result_by_id(self, result_id: int):
         db = next(self.databaseServer.get_db())

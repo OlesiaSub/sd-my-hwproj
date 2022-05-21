@@ -86,7 +86,7 @@ class Server:
         return templates.TemplateResponse('new_checker.html', context={'request': request})
 
     @router.post("/teacher/new_checker")
-    async def hw_post(self, request: Request):
+    async def checker_post(self, request: Request):
         form = NewCheckerCreateForm(request)
         await form.load_data()
         checker = models.Checker(name=form.name, link=form.link)
