@@ -10,6 +10,7 @@ from app.schemas import schemas
 class ControllerStudent:
     databaseServer = database_server.DatabaseServer()
     Base.metadata.create_all(bind=engine)
+    #TODO: создать taskQueue
 
     def get_hw_sorted(self):
         db = next(self.databaseServer.get_db())

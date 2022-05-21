@@ -24,3 +24,5 @@ passlib~=1.7.4
 jose~=1.0.0
 fastapi-utils==0.2.1
 python-multipart~=0.0.5
+docker==5.0.3
+pika==1.2.1
