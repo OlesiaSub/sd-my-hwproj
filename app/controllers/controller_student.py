@@ -20,7 +20,7 @@ class ControllerStudent:
     def get_results_sorted(self):
         db = next(self.databaseServer.get_db())
         results = db.query(schemas.Result).order_by(schemas.Result.date).all()
-        return list(map(lambda x: models.Result(id=x.id, comment=x.comment, mark=x.mark, date=x.date), results))
+        return list(map(lambda x: schemas.Result(id=x.id, comment=x.comment, mark=x.mark, date=x.date), results))
 
     def submit_hw(self, hw_id, attempt: Attempt):
         db = next(self.databaseServer.get_db())

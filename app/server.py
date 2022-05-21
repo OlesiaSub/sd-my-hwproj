@@ -81,17 +81,17 @@ class Server:
         self.controllerTeacher.add_hw(homework=hw)
         return templates.TemplateResponse("new_hw.html", form.__dict__)
 
-    # @router.get("/teacher/new_script")
-    # def checker_get(self, request: Request):
-    #     return templates.TemplateResponse('new_checker.html', context={'request': request})
-    #
-    # @router.post("/teacher/new_script")
-    # async def hw_post(self, request: Request):
-    #     form = NewCheckerCreateForm(request)
-    #     await form.load_data()
-    #     checker = models.Checker(name=form.name, script=form.script)
-    #     self.controllerTeacher.update_checker(checker=checker)
-    #     return templates.TemplateResponse("new_checker.html", form.__dict__)
+    @router.get("/teacher/new_checker")
+    def checker_get(self, request: Request):
+        return templates.TemplateResponse('new_checker.html', context={'request': request})
+
+    @router.post("/teacher/new_checker")
+    async def hw_post(self, request: Request):
+        form = NewCheckerCreateForm(request)
+        await form.load_data()
+        checker = models.Checker(name=form.name, link=form.link)
+        self.controllerTeacher.update_checker(checker=checker)
+        return templates.TemplateResponse("new_checker.html", form.__dict__)
 
 
 server = Server()

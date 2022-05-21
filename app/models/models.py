@@ -16,7 +16,6 @@ class Attempt(BaseModel):
 
 
 class Result(BaseModel):
-    id: int
     comment: str
     mark: int
     date: datetime.datetime
@@ -25,4 +24,4 @@ class Result(BaseModel):
 
 class Checker(BaseModel):
     name: str
-    script: str
+    link: str

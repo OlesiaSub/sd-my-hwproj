@@ -9,11 +9,11 @@ class NewCheckerCreateForm:
         self.request: Request = request
         self.errors: List = []
         self.name: str = ""
-        self.script: str = ""
+        self.link: str = ""
 
     async def load_data(self):
         form = await self.request.form()
         self.name = form.get("name")
-        self.script = form.get("script")
+        self.link = form.get("link")
 
     # todo validation
