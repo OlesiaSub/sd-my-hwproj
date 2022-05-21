@@ -33,7 +33,7 @@ class ControllerStudent:
         message = dict({
             'attempt_id': db_attempt.id,
             'homework_id': hw_id,
-            'date': now(),
+            'date': str(now()),
             #'solution': 'https://raw.githubusercontent.com/OlesiaSub/sd-my-hwproj/impl-1/app/server.py',
              'solution': db_attempt.solution,
             #'checker': 'https://raw.githubusercontent.com/OlesiaSub/sd-my-hwproj/impl-1/app/schemas/schemas.py',
