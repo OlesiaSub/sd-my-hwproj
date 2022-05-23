@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block  title %}
+All notes
+{% endblock %}
+
+{% block body %}
+<h2 style="text-align:center;">All results</h2>
+<p>
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>Comment</th>
+        <th>Mark</th>
+    </tr>
+
+    {% for result in results %}
+    <tr>
+        <td>{{ result.date.date() }}</td>
+        <td>{{ result.comment }}</td>
+        <td>{{ result.mark }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p style="text-align:center;"><a href="/student" class="btn btn-warning">Back to hub</a></p>
+{% endblock %}
