@@ -31,6 +31,11 @@ class Server:
         return templates.TemplateResponse("student_hub.html",
                                           {"request": request})
 
+    @router.get("/teacher", response_model=List[models.Homework])
+    def teacher(self, request: Request):
+        return templates.TemplateResponse("teacher_hub.html",
+                                          {"request": request})
+
     @router.get("/student/hw")
     def get_student_hw(self, request: Request):
         return templates.TemplateResponse("hw_list.html",
